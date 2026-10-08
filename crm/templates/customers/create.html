@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create Customer</h2>
+<form method="post">
+  {{ csrf_token() }}
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" required value="{{ data.name if data is defined else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" value="{{ data.email if data is defined else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+    <input name="phone" class="form-control" value="{{ data.phone if data is defined else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Address</label>
+    <textarea name="address" class="form-control">{{ data.address if data is defined else '' }}</textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Create</button>
+</form>
+{% endblock %}

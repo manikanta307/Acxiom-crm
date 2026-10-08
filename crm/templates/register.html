@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Register</h2>
+<form method="post" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input name="username" class="form-control" required maxlength="80">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" required maxlength="120">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input id="password" name="password" type="password" class="form-control" required minlength="8">
+    <div id="pwHelp" class="form-text">Minimum 8 chars, include upper, lower, number, special.</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Role</label>
+    <select name="role" class="form-select">
+      <option>Sales Executive</option>
+      <option>Manager</option>
+      <option>Admin</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Register</button>
+</form>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+  const pw = document.getElementById('password').value;
+  const reUpper = /[A-Z]/;
+  const reLower = /[a-z]/;
+  const reNum = /[0-9]/;
+  const reSpecial = /[!@#$%^&*()_+\-=[\]{};:\"\\|,.<>/?]/;
+  let msgs = [];
+  if (pw.length < 8) msgs.push('Password must be at least 8 characters');
+  if (!reUpper.test(pw)) msgs.push('Include uppercase');
+  if (!reLower.test(pw)) msgs.push('Include lowercase');
+  if (!reNum.test(pw)) msgs.push('Include number');
+  if (!reSpecial.test(pw)) msgs.push('Include special character');
+  if (msgs.length) {
+    e.preventDefault();
+    alert(msgs.join('\n'));
+  }
+});
+</script>
+
+{% endblock %}

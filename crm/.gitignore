@@ -1,0 +1,36 @@
+venv/
+__pycache__/
+.venv/
+*.pyc
+.env
+database/*.db
+instance/
+*.sqlite3
+/.vscode/
+.idea/
+*.log
+coverage/
+dist/
+build/
+*.egg-info/# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+.env
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Database
+*.db
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
